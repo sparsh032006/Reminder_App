@@ -1,2 +1,0 @@
-Your_name = "Sparsh Bhardwaj"
-Your_email = "sparshb45@gmail.com"
