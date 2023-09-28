@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2fe7c9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        #loginForm {
+            max-width: 300px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        #message {
+            text-align: center;
+            margin-top: 10px;
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <h2>Login Page</h2>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <input type="submit" value="Login">
+    </form>
+
+    <div id="message"></div>
+</body>
+</html>
+
+
+    <script>
+        import { users } from './data.js';
+
+    function login() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    // Find the user in the users array
+    const user = users.find(u => u.username === username && u.password === password);
+
+    if (user) {
+        // Successful login
+        alert(`Welcome, ${user.name}!`);
+        // Store the logged-in status in local storage
+        localStorage.setItem("loggedIn", "true");
+        // Redirect to a welcome page or dashboard
+        window.location.href = "welcome.html";
+    } else {
+        // Invalid login
+        alert("Invalid username or password. Please try again.");
+    }
+}
+
+// Check if the user is already logged in
+if (localStorage.getItem("loggedIn") === "true") {
+    // Redirect to the welcome page or dashboard
+    window.location.href = "welcome.html";
+}
+
+    </script>
+</body>
+</html>
